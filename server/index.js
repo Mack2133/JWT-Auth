@@ -10,6 +10,12 @@ const MONGODB_URI = 'mongodb+srv://user1:user1@cluster0.hrnhrbi.mongodb.net/test
 app.use(cookieParser())
 app.use(express.json());
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 mongoose.connect(MONGODB_URI)
     .then(() => {
         console.log("MongoDB connected");
